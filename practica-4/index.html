@@ -11,12 +11,12 @@
 </head>
 
 <body>
-  <div id="header">
+  <header id="header">
     <h1>Tatoo ootaT</h1>
     <p>Una empresa muy distinta</p>
-  </div>
+  </header>
 
-  <div id="menu">
+  <nav id="menu">
     <ul>
       <li><a href="../">Lenguaje de Marcas</a></li>
       <li><a href="#">Inicio</a></li>
@@ -24,23 +24,29 @@
       <li><a href="#">Nuestros trabajos</a></li>
       <li><a href="#">Contáctanos</a></li>
     </ul>
-  </div>
+  </nav>
 
-  <div id='cookieEU'>
+  <aside id='cookieEU'>
     <h2>Esta webs necesita usar cookies.</h2>
     <div id='textCookie'>
       <p>Utilizamos cookies para asegurar que le ofrecemos la mejor experiencia en nuestro sitio web. Si continúa sin
         cambiar la configuración, asumiremos que está encantado de recibir todas las cookies en este sitio web.</p>
       <a class='button' href='#' onclick="document.getElementById('cookieEU').style.display = 'none'">Cerrar</a>
     </div>
-  </div>
+  </aside>
 
-  <div id="content">
-    <div id='main'>
-      <div id='one'>
-        <div class='imageRight'>
-          <img src="images/costillas.jpg" alt="Costillas" />
-        </div>
+  <main id="content">
+    <article id='main'>
+      <section id='one'>
+        <figure class='imageRight'>
+          <img src="images/costillas.jpg" id="imageRight"/>
+          <figcaption id="imageRightCaption"/>
+          <script>
+            const imageRightAlt = "Costillas";
+            document.getElementById("imageRight").setAttribute("alt", imageRightAlt);
+            document.getElementById("imageRightCaption").innerHTML = imageRightAlt;
+          </script>
+        </figure>
         <h2>Tatuajes</h2>
         <p>
           Hoy en día el tatuaje representa algo diferente para cada persona, dentro de los diferentes estilos
@@ -67,11 +73,17 @@
           también algo con lo que convivirá el resto de su vida, de tal manera es algo para mostrar y admirar siendo
           casi una prenda más de vestir, pues está reemplazando de alguna manera la ropa o simplemente complementando la
           apariencia de la persona.</p>
-      </div>
-      <div id='two'>
-        <div class='imageLeft'>
-          <img src="images/titere.jpg" alt="Titere" />
-        </div>
+      </section>
+      <section id='two'>
+        <figure class='imageLeft'>
+          <img src="images/titere.jpg" id="imageLeft"/>
+          <figcaption id="imageLeftCaption"/>
+          <script>
+            const imageLeftAlt = "Titere";
+            document.getElementById("imageLeft").setAttribute("alt", imageLeftAlt);
+            document.getElementById("imageLeftCaption").innerHTML = imageLeftAlt;
+          </script>
+        </figure>
         <h2>El tatuaje en la cultura</h2>
         <p>
           El tatuaje ya no solo se considera como representación de culturas antiguas, moda pasajera o alusión a la
@@ -93,9 +105,9 @@
           concentración. En la educación, los museos de las culturas del mundo ofrece un taller dedicado a las artes y
           cuerpo dirigido a estudiantes de secundaria, que pueden ser complementados con una visita guiada temática
           sobre los rituales de paso, un tema muy interesante para jóvenes y adolescentes.</p>
-      </div>
-    </div>
-    <div id='rightNav'>
+      </section>
+    </article>
+    <nav id='rightNav'>
       <ul>
         <li><a href='#'><img src="images/twitter.png"></a></li>
         <li><a href='#'><img src="images/facebook.png"></a></li>
@@ -104,12 +116,13 @@
         <li><a href='#'><img src="images/linkedin.png"></a></li>
         <li><a href='#'><img src="images/you-tube.png"></a></li>
       </ul>
-    </div>
-  </div>
-  <div id="footer">
-    El problema de tener una mente abierta es que la gente insiste en entrar dentro y poner allí sus cosas. <a
-      href='https://es.wikipedia.org/wiki/Terry_Pratchett'> Terry Pratchett </a>
-  </div>
+    </nav>
+  </main>
+
+  <footer id="footer">
+    El problema de tener una mente abierta es que la gente insiste en entrar dentro y poner allí sus cosas. 
+    <a href='https://es.wikipedia.org/wiki/Terry_Pratchett'>Terry Pratchett</a>
+  </footer>
 </body>
 
 </html>
