@@ -61,6 +61,16 @@ ul {
   /* Firefox */
 }
 
+.imageLeft, .imageRight {
+  position: relative;
+  z-index: 1;
+}
+
+.imageLeft #imageLeftCaption, .imageRight #imageRightCaption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
 
 #main {
   /*
@@ -145,6 +155,7 @@ ul {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 2;
   margin: 0px;
   text-align: center;
   background-color: #097054;
@@ -189,6 +200,7 @@ ul {
   bottom: 0;
   right: 0;
   left: 0;
+  z-index: 2;
   background-color: #097054;
   text-align: center;
   color: white;
@@ -229,6 +241,7 @@ ul {
   left: 10%;
   right: 10%;
   top: 30%;
+  z-index: 2;
   text-align: center;
   border: 2px solid red;
   background-color: white;
