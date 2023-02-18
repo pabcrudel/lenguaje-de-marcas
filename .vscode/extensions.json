@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "formulahendry.auto-rename-tag",
+        "formulahendry.auto-close-tag",
+        "naumovs.color-highlight",
+        "usernamehw.errorlens",
+        "mintlify.document",
+        "vscode-icons-team.vscode-icons",
+        "ritwickdey.liveserver",
+        "ecmel.vscode-html-css"
+    ]
+}
