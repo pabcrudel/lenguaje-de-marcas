@@ -1,41 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-ES">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="icon" type="image/x-icon" href="../public/favicon.ico">
     <title>Formulario</title>
 </head>
 
 <body>
     <header id="mainheader">
         <nav id="mainNav">
-            <li><a href="https://pabcrudel.github.io">Pablo Cru</a></li>
-            <li><a href="../">Lenguaje de Marcas</a></li>
+            <ul>
+                <li><a href="https://pabcrudel.github.io">Pablo Cru</a></li>
+                <li><a href="../">Lenguaje de Marcas</a></li>
+            </ul>
         </nav>
+        <h1 id="mainTitle">Mi super página Formulario</h1>
     </header>
-    <fieldset>
-        <legend>Contáctanos</legend>
-        <form action="post" id="mainForm">
-            <section>
-                <label for="nombre">Nombre: </label><input type="text" id="nombre" placeholder="Àga Pito" required>
-            </section>
-            <section>
-                <label for="telf">Teléfono: </label><input type="tel" id="telf" placeholder="961111111">
-            </section>
-            <section>
-                <label for="email">Email: </label><input type="email" id="email" placeholder="agapito@ejemplo.com" required>
-            </section>
-            <section>
-                <label for="url">Sitio Web: </label><input type="url" id="url" placeholder="https://pabcrudel.github.io">
-            </section>
-            <section>
-                <label for="number">Edad: </label><input type="number" id="number" placeholder="18">
-            </section>
-        </form>
-    </fieldset>
+    <form class="formulario" action="http://ncoge.com/phps/formulario.php%22%3E" method="post" target="_blank">
+        <ul>
+            <li>
+                <h2>Contáctanos</h2>
+            </li>
+            <li>
+                <label for="name" class="obligatorio">Nombre:</label>
+                <input type="text" name="name" placeholder="Aga Pito" required />
+            </li>
+            <li>
+                <label for="telef">Telefono:</label>
+                <input type="tel" name="telef" placeholder="96 111 11 11" />
+            </li>
+            <li>
+                <label for="email" class="obligatorio">Email:</label>
+                <input type="email" name="email" placeholder="agapito@ejemplo.com" required />
+            </li>
+            <li>
+                <label for="website">Sitio Web:</label>
+                <input type="url" name="web" placeholder="https://pabcrudel.github.io" />
+            </li>
+            <li>
+                <label for="edad">Edad:</label>
+                <input type="number" name="edad" min="1" max="99" value="18" step="1" />
+            </li>
+            <li>
+                <label for="Mensaje" class="obligatorio">Mensaje:</label>
+                <textarea name="Mensaje" cols="40" rows="6" required></textarea>
+            </li>
+            <li>
+                <button class="submit" type="submit">Enviar</button>
+            </li>
+        </ul>
+    </form>
+    <footer>
+        <p>
+            Copyright <time datetime="2027">2027</time> La casa de la pradera, todos los derechos reservados. <a
+            href="mailto:spameamepliss@gmail.com">spameamepliss@gmail.com</a>
+        </p>
+    </footer>
 </body>
 
 </html>
