@@ -1,0 +1,27 @@
+# Text files
+*.html text
+*.js text
+*.json text
+*.css text
+*.scss text
+*.md text
+*.sh text
+*.yml text
+*.yaml text
+*.php text
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.mp4 binary
+*.webm binary
+*.ogg binary
+*.mp3 binary
+*.wav binary
+*.pdf binary
