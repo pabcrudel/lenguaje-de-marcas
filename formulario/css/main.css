@@ -1,12 +1,9 @@
-nav#mainNav ul {
-    padding: 1rem;
-}
-nav#mainNav li {
-    display: inline;
-}
-nav#mainNav li:not(:last-child) {
-    margin-right: 1rem;
-}
+nav#mainNav ul {padding: 1rem;}
+
+nav#mainNav li {display: inline;}
+
+nav#mainNav li:not(:last-child) {margin-right: 1rem;}
+
 nav#mainNav a {
     text-decoration: none;
     color: black;
@@ -32,9 +29,9 @@ nav#mainNav a {
 /*--- estilos para los ul y li del formulario ---*/
 .formulario ul {
     width: 750px;
+    list-style-type: none;
     margin: 0px;
     padding: 0px;
-    list-style-type: none;
 }
 
 .formulario li {
@@ -45,7 +42,6 @@ nav#mainNav a {
 .formulario label {
     color: #555555;
     display: inline;
-    /* Si no pones este float, el mensaje se cae al bottom */
     float: left;
     font-family: sans-serif;
     font-size: 13px;
@@ -73,23 +69,22 @@ nav#mainNav a {
 /*----- estilos visuales de los elementos --------*/
 .formulario input,
 .formulario textarea {
-    border: 1px solid #aaa;
+    border: 2px solid #28921f;
     border-radius: 5px;
     color: #888;
     font-size: 12px;
-    /*----- para ralentiza el que se haga grande la caja --------*/
     padding-right: 30px;
+    /*----- para ralentiza el que se haga grande la caja --------*/
     -moz-transition: padding .25s;
     -webkit-transition: padding .25s;
     -o-transition: padding .25s;
     transition: padding .25s;
-    border: 2px solid #28921f;
 }
 
 .formulario input:focus,
 .formulario textarea:focus {
     background: #fff;
-    border: 2px solid #555;
+    border: 1px solid #555;
     box-shadow: 0 0 3px #aaa;
     padding-right: 120px;
 }
