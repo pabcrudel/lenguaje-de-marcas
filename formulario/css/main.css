@@ -1,14 +1,135 @@
-fieldset {width: clamp(10%, 320px, 100%);}
-
-form#mainForm {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+nav#mainNav ul {
+    padding: 1rem;
+}
+nav#mainNav li {
+    display: inline;
+}
+nav#mainNav li:not(:last-child) {
+    margin-right: 1rem;
+}
+nav#mainNav a {
+    text-decoration: none;
+    color: black;
+    font-size: larger;
 }
 
-form#mainForm label {
+.formulario h2 {
+    background-color: lightskyblue;
+    text-shadow: 0 2px 2px darkgrey;
+    border-radius: 5px;
+    color: white;
+    font-family: sans-serif;
+    font-size: 20px;
+    padding: 5px;
+    width: 433px;
+}
+
+.obligatorio:after {
+    content: '*';
+    color: red;
+}
+
+/*--- estilos para los ul y li del formulario ---*/
+.formulario ul {
+    width: 750px;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+.formulario li {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.formulario label {
+    color: #555555;
+    display: inline;
+    /* Si no pones este float, el mensaje se cae al bottom */
     float: left;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 3px;
+    padding: 3px;
+    width: 90px;
 }
-form#mainForm input {
-    float: right;
+
+.formulario input {
+    height: 20px;
+    width: 220px;
+    padding: 5px 8px;
+}
+
+.formulario textarea {
+    padding: 8px;
+    width: 300px;
+}
+
+.formulario button {
+    margin-left: 90px;
+}
+
+/*----- estilos visuales de los elementos --------*/
+.formulario input,
+.formulario textarea {
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    color: #888;
+    font-size: 12px;
+    /*----- para ralentiza el que se haga grande la caja --------*/
+    padding-right: 30px;
+    -moz-transition: padding .25s;
+    -webkit-transition: padding .25s;
+    -o-transition: padding .25s;
+    transition: padding .25s;
+    border: 2px solid #28921f;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+    background: #fff;
+    border: 2px solid #555;
+    box-shadow: 0 0 3px #aaa;
+    padding-right: 120px;
+}
+
+/* === Estilos de Validacion === */
+.formulario input:required:valid,
+.formulario textarea:required:valid {
+    border: 2px solid #28921f;
+}
+.formulario input:required:invalid,
+.formulario textarea:required:invalid {
+    border: 2px solid #ff0000
+}
+
+.formulario input:focus:invalid,
+.formulario textarea:focus:invalid {
+    border: 2px solid #ff0000
+}
+
+/* === Estilos del boton de Envio === */
+button.submit {
+    padding: 9px 17px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    line-height: 1;
+    color: #444;
+    border: none;
+    background-color: #fff;
+    border: 1px solid #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+button.submit:hover {
+    opacity: .55;
+    cursor: pointer;
+    color: red;
+}
+
+button.submit:active {
+    border: 5px solid #222;
+    box-shadow: 0 0 10px 5px #444 inset;
 }
