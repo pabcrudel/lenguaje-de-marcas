@@ -1,14 +1,13 @@
 # Text files
-*.md text
-*.sh text
 *.txt text
+*.vue text
 *.html text
 *.js text
 *.json text
-*.vue text
 *.css text
 *.scss text
 *.md text
+*.sh text
 *.yml text
 *.yaml text
 *.php text
