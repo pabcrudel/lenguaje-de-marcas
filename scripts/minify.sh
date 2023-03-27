@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Script que minifica los archivos .html, .css y .js y los añade en una carpeta con el nombre de "minified" respetando el arbol de directorios original.
+# Script que minifica los archivos .html, .css y .js y los añade en una carpeta con el nombre de "dist" respetando el arbol de directorios original.
 #
 # --------------------------------------------------------------------
 # Author: Pablo Cru
@@ -33,11 +33,11 @@ f_check_packages() {
   echo
 }
 
-# Verificar el estado del directorio "minified".
+# Verificar el estado del directorio "dist".
 # - si existe, elimina su contenido.
 # - si no exite, lo crea.
 f_check_output() {
-  dir=minified
+  dir=dist
 
   echo Verificando estado del directorio $dir...
   echo
@@ -88,15 +88,15 @@ f_minify() {
     # Verifica si el archivo es un archivo HTML, CSS o JS
     case "$file" in
       *.html)
-        # Minifica el archivo HTML y guarda el archivo minificado en el directorio "minified"
+        # Minifica el archivo HTML y guarda el archivo minificado en el directorio "dist"
         f_catch_error './node_modules/.bin/html-minifier "$file" -o "$min_path" --collapse-whitespace --remove-comments'
       ;;
       *.css)
-        # Minifica el archivo CSS y guarda el archivo minificado en el directorio "minified"
+        # Minifica el archivo CSS y guarda el archivo minificado en el directorio "dist"
         f_catch_error './node_modules/.bin/cleancss "$file" -o "$min_path" --compatibility "ie >= 11, Edge >= 12, Firefox >= 2, Chrome >= 4, Safari >= 3.1, Opera >= 15, iOS >= 3.2"'
       ;;
       *.js)
-        # Minifica el archivo JS y guarda el archivo minificado en el directorio "minified"
+        # Minifica el archivo JS y guarda el archivo minificado en el directorio "dist"
         f_catch_error './node_modules/.bin/uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props'
       ;;
     esac
