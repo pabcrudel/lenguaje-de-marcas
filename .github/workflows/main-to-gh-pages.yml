@@ -15,7 +15,6 @@ jobs:
       - name: Create gh-pages branch if not exists
         run: | 
           git branch gh-pages || true
-          git checkout gh-pages
 
       - name: Copy code to gh-pages branch
         run: |
