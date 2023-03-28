@@ -5,26 +5,48 @@ on:
     branches:
       - main
 
-jobs:
-  deploy:
+obs:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16.x'
-
-      - name: Install dependencies
-        run: npm install uglify-js clean-css-cli html-minifier --save-dev
-
+      
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y nodejs
+          sudo apt-get install -y npm
+          npm install -g html-minifier
+          npm install -g clean-css-cli
+          npm install -g uglify-js
+          
       - name: Minify HTML, CSS, and JS files
         run: |
-          npx html-minifier --input-dir src --output-dir dist --file-ext html
-          npx clean-css-cli -o dist/style.css src/style.css
-          npx uglifyjs src/script.js -o dist/script.js --compress --mangle
+          dir=public
+          isOk=1
+          # Iterate through HTML, CSS, and JS files in the current directory and its subdirectories, excluding the "node_modules" folder
+          while [ $isOk -eq 1 ] && read -d $'\0' file; do
+            # Get the relative path of the file to use as the output path of the minified file, and create it
+            rel_path=${file#./}
+            min_path="$dir/$rel_path"
+            mkdir -p "$(dirname "$min_path")"
+            # Check if the file is an HTML, CSS, or JS file
+            case "$file" in
+              *.html)
+                # Minify HTML file and save the minified file in the "public" directory
+                html-minifier "$file" -o "$min_path" --collapse-whitespace --remove-comments || isOk=0
+              ;;
+              *.css)
+                # Minify CSS file and save the minified file in the "public" directory
+                cleancss "$file" -o "$min_path" --compatibility "ie >= 11, Edge >= 12, Firefox >= 2, Chrome >= 4, Safari >= 3.1, Opera >= 15, iOS >= 3.2" || isOk=0
+              ;;
+              *.js)
+                # Minify JS file and save the minified file in the "public" directory
+                uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props || isOk=0
+              ;;
+            esac
+          done < <(find . -type f -not -path "*node_modules/*" \( -name '*.html' -o -name '*.css' -o -name '*.js' \) -print0)
 
       - name: Deploy to gh-pages
         run: |
