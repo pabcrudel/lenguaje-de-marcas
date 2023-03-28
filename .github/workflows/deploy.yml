@@ -49,7 +49,7 @@ jobs:
 
           cd dist
           git init
-          git branch -m <name>
+          git branch -m main
           git add -A
           git commit --allow-empty -m "Deploy (commit: $commit_hash)"
 
