@@ -14,8 +14,7 @@ jobs:
       
       - name: Install Dependencies
         run: |
-          sudo apt-get update 
-          sudo apt-get install tree
+          sudo apt-get update
           sudo apt-get install -y nodejs
           sudo apt-get install -y npm
           npm install -g html-minifier
@@ -24,21 +23,20 @@ jobs:
           
       - name: Minify HTML, CSS, and JS files
         run: |
-          dir=dist
           while read -d $'\0' file; do
             rel_path=${file#./}
-            min_path="$dir/$rel_path"
+            min_path="dist/$rel_path"
             mkdir -p "$(dirname "$min_path")"
 
             case "$file" in
               *.html)
-                html-minifier "$file" -o "$min_path" --collapse-whitespace --remove-comments || isOk=0
+                html-minifier "$file" -o "$min_path" --collapse-whitespace --remove-comments
               ;;
               *.css)
-                cleancss "$file" -o "$min_path" --compatibility "ie >= 11, Edge >= 12, Firefox >= 2, Chrome >= 4, Safari >= 3.1, Opera >= 15, iOS >= 3.2" || isOk=0
+                cleancss "$file" -o "$min_path" --compatibility "ie >= 11, Edge >= 12, Firefox >= 2, Chrome >= 4, Safari >= 3.1, Opera >= 15, iOS >= 3.2"
               ;;
               *.js)
-                uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props || isOk=0
+                uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props
               ;;
             esac
           done < <(find . -type f -not -path "*node_modules/*" \( -name '*.html' -o -name '*.css' -o -name '*.js' \) -print0)
@@ -51,10 +49,12 @@ jobs:
 
           cd dist
           git init
+          git branch -m <name>
           git add -A
           git commit --allow-empty -m "Deploy (commit: $commit_hash)"
 
-          branch=$(git rev-parse --abbrev-ref $(git symbolic-ref HEAD))
+          git config --global user.email "pabcrudel@gmail.com"
+          git config --global user.name "pabcrudel"
 
-          git push -f $repo_url $branch:gh-pages -v
+          git push -f $repo_url main:gh-pages -v
 
