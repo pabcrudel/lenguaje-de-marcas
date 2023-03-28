@@ -14,7 +14,9 @@ jobs:
       
       - name: Install Dependencies
         run: |
-          sudo apt-get update
+          sudo apt-get update 
+          sudo apt-get -y tree
+
           sudo apt-get install -y nodejs
           sudo apt-get install -y npm
           npm install -g html-minifier
@@ -50,11 +52,5 @@ jobs:
 
       - name: Deploy to gh-pages
         run: |
-          git checkout -b gh-pages || git checkout gh-pages
-          git rm -rf .
-          cp -R dist/* .
-          git add .
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git commit -m "Deploy to gh-pages"
-          git push --force origin gh-pages
+          cd /dist && tree
+
