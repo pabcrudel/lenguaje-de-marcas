@@ -15,7 +15,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update 
-          sudo apt-get -y tree
+          sudo apt-get install tree
 
           sudo apt-get install -y nodejs
           sudo apt-get install -y npm
