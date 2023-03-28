@@ -52,5 +52,5 @@ jobs:
 
       - name: Deploy to gh-pages
         run: |
-          cd /dist && tree
+          tree
 
