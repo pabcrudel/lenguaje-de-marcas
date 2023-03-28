@@ -43,18 +43,20 @@ jobs:
 
       - name: Deploy to gh-pages
         run: |
+          git config --global user.email "pabcrudel@gmail.com"
+          git config --global user.name "pabcrudel"
+          git config --global init.defaultBranch main
+
           git_log=$(git log)
           commit_hash=$(echo $git_log | awk '{print $2}')
           repo_url=$(git remote show origin | grep Push | awk '{print $3}')
 
           cd dist
           git init
-          git branch -m main
           git add -A
           git commit --allow-empty -m "Deploy (commit: $commit_hash)"
+        
+          branch=$(git rev-parse --abbrev-ref $(git symbolic-ref HEAD))
 
-          git config --global user.email "pabcrudel@gmail.com"
-          git config --global user.name "pabcrudel"
-
-          git push -f $repo_url main:gh-pages -v
+          git push -f $repo_url $branch:gh-pages -v
 
