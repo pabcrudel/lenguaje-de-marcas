@@ -23,7 +23,7 @@ jobs:
           
       - name: Minify HTML, CSS, and JS files
         run: |
-          dir=public
+          dir=dist
           isOk=1
           # Iterate through HTML, CSS, and JS files in the current directory and its subdirectories, excluding the "node_modules" folder
           while [ $isOk -eq 1 ] && read -d $'\0' file; do
