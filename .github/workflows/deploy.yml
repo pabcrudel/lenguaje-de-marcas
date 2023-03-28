@@ -18,7 +18,7 @@ jobs:
           node-version: '16.x'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install uglify-js clean-css-cli html-minifier --save-dev
 
       - name: Minify HTML, CSS, and JS files
         run: |
