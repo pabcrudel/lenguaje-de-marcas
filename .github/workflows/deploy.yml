@@ -1,0 +1,38 @@
+name: Deploy to gh-pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Minify HTML, CSS, and JS files
+        run: |
+          npx html-minifier --input-dir src --output-dir dist --file-ext html
+          npx clean-css-cli -o dist/style.css src/style.css
+          npx uglifyjs src/script.js -o dist/script.js --compress --mangle
+
+      - name: Deploy to gh-pages
+        run: |
+          git checkout -b gh-pages || git checkout gh-pages
+          git rm -rf .
+          cp -R dist/* .
+          git add .
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git commit -m "Deploy to gh-pages"
+          git push --force origin gh-pages
