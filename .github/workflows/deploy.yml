@@ -16,7 +16,6 @@ jobs:
         run: |
           sudo apt-get update 
           sudo apt-get install tree
-
           sudo apt-get install -y nodejs
           sudo apt-get install -y npm
           npm install -g html-minifier
@@ -26,25 +25,19 @@ jobs:
       - name: Minify HTML, CSS, and JS files
         run: |
           dir=dist
-          isOk=1
-          # Iterate through HTML, CSS, and JS files in the current directory and its subdirectories, excluding the "node_modules" folder
-          while [ $isOk -eq 1 ] && read -d $'\0' file; do
-            # Get the relative path of the file to use as the output path of the minified file, and create it
+          while read -d $'\0' file; do
             rel_path=${file#./}
             min_path="$dir/$rel_path"
             mkdir -p "$(dirname "$min_path")"
-            # Check if the file is an HTML, CSS, or JS file
+
             case "$file" in
               *.html)
-                # Minify HTML file and save the minified file in the "public" directory
                 html-minifier "$file" -o "$min_path" --collapse-whitespace --remove-comments || isOk=0
               ;;
               *.css)
-                # Minify CSS file and save the minified file in the "public" directory
                 cleancss "$file" -o "$min_path" --compatibility "ie >= 11, Edge >= 12, Firefox >= 2, Chrome >= 4, Safari >= 3.1, Opera >= 15, iOS >= 3.2" || isOk=0
               ;;
               *.js)
-                # Minify JS file and save the minified file in the "public" directory
                 uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props || isOk=0
               ;;
             esac
@@ -52,6 +45,16 @@ jobs:
 
       - name: Deploy to gh-pages
         run: |
+          git_log=$(git log)
+          commit_hash=$(echo $git_log | awk '{print $2}')
+          repo_url=$(git remote show origin | grep Push | awk '{print $3}')
+
           cd dist
-          tree
+          git init
+          git add -A
+          git commit --allow-empty -m "Deploy (commit: $commit_hash)"
+
+          branch=$(git rev-parse --abbrev-ref $(git symbolic-ref HEAD))
+
+          git push -f $repo_url $branch:gh-pages -v
 
