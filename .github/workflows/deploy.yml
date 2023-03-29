@@ -11,13 +11,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
-      - name: Setup Git
-        uses: actions/setup-git@v2
-        with:
-          name: pabcrudel
-          email: pabcrudel@gmail.com
-          token: ${{ secrets.ACCESS_TOKEN }}
       
       - name: Install Dependencies
         run: |
