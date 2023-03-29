@@ -41,20 +41,8 @@ jobs:
             esac
           done < <(find . -type f -not -path "*node_modules/*" \( -name '*.html' -o -name '*.css' -o -name '*.js' \) -print0)
 
-      - name: Deploy to gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo
-          
-          git config --global init.defaultBranch main
-          
-          cd dist
-          git init
-          git add -A
-          git commit --allow-empty -m "Deploy (commit: $GITHUB_SHA)"
-          
-          git config --global user.name "pabcrudel"
-          git config --global user.email "pabcrudel@gmail.com"
-          
-          git push -f "https://github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
