@@ -45,8 +45,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Deploy to gh-pages"
-        
+          git config --global user.email "pabcrudel@gmail.com"
+          git config --global user.name "pabcrudel"
+          
           git config --global init.defaultBranch main
           
           cd dist
