@@ -57,5 +57,6 @@ jobs:
           git commit --allow-empty -m "Deploy (commit: $GITHUB_SHA)"
           
           repo_url="https://github.com/$GITHUB_REPOSITORY.git"
+          echo $repo_url
           
           git push -f $repo_url HEAD:gh-pages
