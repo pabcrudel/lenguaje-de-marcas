@@ -46,16 +46,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo
-          echo "Deploy to gh-pages"
-          echo
-          
-          email=$(git log --format='%ae' -n 1 | head -n 1)
-          echo "Email: $email"
-          echo "User: ${GITHUB_ACTOR}"
-          
-          git config --global user.name "${GITHUB_ACTOR}"
-          git config --global user.email "$email"
-          echo
+          git config --global user.name "pabcrudel"
+          git config --global user.email "pabcrudel@gmail.com"
           
           git config --global init.defaultBranch main
           
