@@ -45,8 +45,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --global user.email "pabcrudel@gmail.com"
-          git config --global user.name "pabcrudel"
+          echo $GITHUB_ACTOR
+          echo $GITHUB_EMAIL
+          git config --global user.email "$GITHUB_EMAIL"
+          git config --global user.name "$GITHUB_ACTOR"
           git config --global init.defaultBranch main
           
           cd dist
