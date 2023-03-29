@@ -11,6 +11,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        
+      - name: Setup Git
+        uses: actions/setup-git@v2
+        with:
+          name: pabcrudel
+          email: pabcrudel@gmail.com
+          token: ${{ secrets.ACCESS_TOKEN }}
       
       - name: Install Dependencies
         run: |
@@ -45,8 +52,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --global user.email "pabcrudel@gmail.com"
-          git config --global user.name "pabcrudel"
           git config --global init.defaultBranch main
           
           cd dist
