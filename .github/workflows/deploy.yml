@@ -45,18 +45,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "user: $GITHUB_ACTOR"
-          echo "email: $GITHUB_EMAIL"
-          git config --global user.email "$GITHUB_EMAIL"
           git config --global user.name "$GITHUB_ACTOR"
           git config --global init.defaultBranch main
           
           cd dist
           git init
           git add -A
-          git commit --allow-empty -m "Deploy (commit: $GITHUB_SHA)"
+          git commit --allow-empty -m "Deploy (commit: $GITHUB_SHA)" --silent
           
-          repo_url="https://github.com/$GITHUB_REPOSITORY.git"
-          echo $repo_url
-          
-          git push -f $repo_url HEAD:gh-pages
+          git push -f "https://github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
