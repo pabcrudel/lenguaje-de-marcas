@@ -51,6 +51,6 @@ jobs:
           cd dist
           git init
           git add -A
-          git commit --allow-empty -m "Deploy (commit: $GITHUB_SHA)" --silent
+          git commit --allow-empty -m "Deploy (commit: $GITHUB_SHA)"
           
           git push -f "https://github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
