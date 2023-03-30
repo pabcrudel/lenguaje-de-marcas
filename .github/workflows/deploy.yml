@@ -47,14 +47,19 @@ jobs:
         run: |
           echo
           
-          git config --global init.defaultBranch main
+          # git config --global init.defaultBranch main
           
-          cd dist
-          git init
-          git add -A
-          git commit --allow-empty -m "Deploy (commit: $GITHUB_SHA)"
+          # cd dist
+          # git init
+          # git add -A
+          # git commit --allow-empty -m "Deploy (commit: $GITHUB_SHA)"
           
-          git config --global user.name "pabcrudel"
-          git config --global user.email "pabcrudel@gmail.com"
+          # git config --global user.name "pabcrudel"
+          # git config --global user.email "pabcrudel@gmail.com"
           
-          git push -f "https://github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
+          # git push -f "https://github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
+
+          echo "Current directory: $(pwd)"
+          echo "Contents of the current directory: $(ls -la)"
+          echo "Git configuration: $(git config --list)"
+
