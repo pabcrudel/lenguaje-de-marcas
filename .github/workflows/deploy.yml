@@ -21,45 +21,44 @@ jobs:
           npm install -g clean-css-cli
           npm install -g uglify-js
           
-      # - name: Minify HTML, CSS, and JS files
-      #   run: |
-      #     while read -d $'\0' file; do
-      #       rel_path=${file#./}
-      #       min_path="dist/$rel_path"
-      #       mkdir -p "$(dirname "$min_path")"
+      - name: Minify HTML, CSS, and JS files
+        run: |
+          while read -d $'\0' file; do
+            rel_path=${file#./}
+            min_path="dist/$rel_path"
+            mkdir -p "$(dirname "$min_path")"
 
-      #       case "$file" in
-      #         *.html)
-      #           html-minifier "$file" -o "$min_path" --collapse-whitespace --remove-comments
-      #         ;;
-      #         *.css)
-      #           cleancss "$file" -o "$min_path" --compatibility "ie >= 11, Edge >= 12, Firefox >= 2, Chrome >= 4, Safari >= 3.1, Opera >= 15, iOS >= 3.2"
-      #         ;;
-      #         *.js)
-      #           uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props
-      #         ;;
-      #       esac
-      #     done < <(find . -type f -not -path "*node_modules/*" \( -name '*.html' -o -name '*.css' -o -name '*.js' \) -print0)
+            case "$file" in
+              *.html)
+                html-minifier "$file" -o "$min_path" --collapse-whitespace --remove-comments
+              ;;
+              *.css)
+                cleancss "$file" -o "$min_path" --compatibility "ie >= 11, Edge >= 12, Firefox >= 2, Chrome >= 4, Safari >= 3.1, Opera >= 15, iOS >= 3.2"
+              ;;
+              *.js)
+                uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props
+              ;;
+            esac
+          done < <(find . -type f -not -path "*node_modules/*" \( -name '*.html' -o -name '*.css' -o -name '*.js' \) -print0)
 
       - name: Deploy to gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo
+
+          git config user.name "pabcrudel"
+          git config user.email "pabcrudel@gmail.com"
+
           
-          # git config --global init.defaultBranch main
+          git config --global init.defaultBranch main
           
-          # cd dist
-          # git init
-          # git add -A
-          # git commit --allow-empty -m "Deploy (commit: $GITHUB_SHA)"
+          cd dist
+          git init
+          git add -A
+          git commit --allow-empty -m "Deploy (commit: $GITHUB_SHA)"
           
-          # git config --global user.name "pabcrudel"
-          # git config --global user.email "pabcrudel@gmail.com"
+          git config --global user.name "pabcrudel"
+          git config --global user.email "pabcrudel@gmail.com"
           
           # git push -f "https://github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
-
-          echo "Current directory: $(pwd)"
-          echo "Contents of the current directory: $(ls -la)"
-          echo "Git configuration: $(git config --list)"
+          git push -f "git@github.com:${{ github.repository }}.git" HEAD:gh-pages
 
