@@ -56,7 +56,8 @@ jobs:
           
           git config --global user.name "pabcrudel"
           git config --global user.email "pabcrudel@gmail.com"
+
+          echo https://github.com/$GITHUB_REPOSITORY.git"
           
-          # git push -f "https://github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
-          git push -f "git@github.com:${{ github.repository }}.git" HEAD:gh-pages
+          git push -f "https://github.com/$GITHUB_REPOSITORY.git" HEAD:gh-pages
 
