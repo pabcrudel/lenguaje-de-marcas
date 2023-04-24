@@ -39,10 +39,10 @@ jobs:
                 uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props
               ;;
               *)
-                rsync -R "$file" "$(dirname "$min_path")"
+                rsync -R "$file" "$min_path"
               ;;
             esac
-          done < <(find . -type f -not -path "*node_modules/*" -print0)
+          done < <(find . -type f -not -path "*node_modules/*" -not -path "*.*" -print0)
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
