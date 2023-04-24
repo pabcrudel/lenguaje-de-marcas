@@ -39,7 +39,7 @@ jobs:
                 uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props
               ;;
               *)
-                rsync -R "$file" "$min_path"
+                cp "$file" "$min_path"
               ;;
             esac
           done < <(find . -type f -not -path "*node_modules/*" -not -path "*.*" -print0)
