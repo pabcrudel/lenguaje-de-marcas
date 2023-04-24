@@ -38,8 +38,11 @@ jobs:
               *.js)
                 uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props
               ;;
+              *)
+                rsync -R "$file" "$(dirname "$min_path")"
+              ;;
             esac
-          done < <(find . -type f -not -path "*node_modules/*" \( -name '*.html' -o -name '*.css' -o -name '*.js' \) -print0)
+          done < <(find . -type f -not -path "*node_modules/*" -print0)
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
