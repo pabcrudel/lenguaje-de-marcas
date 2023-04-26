@@ -17,18 +17,16 @@ jobs:
         with:
           node-version: '18'
       
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
           npm install -g html-minifier
           npm install -g clean-css-cli
           npm install -g uglify-js
-          npm fund
 
-      - name: Set permissions
-        run: chmod +x scripts/minify2.sh
-
-      - name: Build proyecto
-        run: scripts/minify2.sh
+      - name: Build project
+        run: |
+          chmod +x minify2.sh
+          minify2.sh
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
