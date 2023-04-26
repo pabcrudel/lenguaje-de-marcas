@@ -51,12 +51,15 @@ f_build() {
           ;;
       esac
   done < <(find . -mindepth 1 "${exclude[@]}" -print0)
-
-  echo
-  echo Done!
-  echo
 }
 
 f_create_dist
 f_exclude_paths
-f_build
+
+if f_build; then
+  echo
+  echo Done!
+  echo
+else
+  rm -rf dist
+fi
