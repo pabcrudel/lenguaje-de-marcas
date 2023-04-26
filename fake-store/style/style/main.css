@@ -1,0 +1,213 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-weight: normal;
+}
+
+/* hola */
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  transition: ease-in-out 0.5s;
+  line-height: 1.6;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #E8F0FC;
+}
+
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+img.brandLogo {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
+
+header#mainHeader {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+header#mainHeader nav#mainNav {
+  background-color: #462b32;
+  border-bottom: 2px solid #FCF4F9;
+  box-shadow: 0 3px 5px #4d6edb;
+}
+header#mainHeader nav#mainNav ul#navList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: content-box;
+  list-style-type: none;
+  padding: 1rem 2rem 1rem 1rem;
+  margin: 0;
+  height: 75px;
+  color: #FCF4F9;
+  text-shadow: 2px 2px 5px #4d6edb;
+}
+@media screen and (max-width: 768px) {
+  header#mainHeader nav#mainNav ul#navList {
+    height: 100%;
+  }
+}
+header#mainHeader nav#mainNav ul#navList li {
+  margin: auto 0;
+  font-size: 1.25rem;
+}
+header#mainHeader nav#mainNav ul#navList li a {
+  text-decoration: none;
+  color: inherit;
+}
+header#mainHeader nav#mainNav ul#navList li#navBrand a {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 0;
+  font-size: 1.5rem;
+  height: 100%;
+}
+@media screen and (max-width: 768px) {
+  header#mainHeader nav#mainNav ul#navList li#navBrand a {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+header#mainHeader nav#mainNav ul#navList li#navBrand a img.brandLogo {
+  border: 2px solid #FCF4F9;
+  box-shadow: 1px 1px 4px #4d6edb;
+}
+header#mainHeader nav#mainNav ul#navList li#navBrand a p {
+  margin: auto 0;
+}
+@media screen and (max-width: 768px) {
+  header#mainHeader nav#mainNav ul#navList li#navBrand a p {
+    padding-right: 1rem;
+  }
+}
+header#mainHeader nav#mainNav ul#navList li#navLinks ul {
+  list-style-type: none;
+  padding: 0;
+}
+@media screen and (max-width: 768px) {
+  header#mainHeader nav#mainNav ul#navList li#navLinks ul {
+    display: none;
+  }
+}
+header#mainHeader nav#mainNav ul#navList li#navLinks ul li {
+  display: inline;
+}
+header#mainHeader nav#mainNav ul#navList li#navLinks ul li:not(:last-child) {
+  margin-right: 1.25rem;
+}
+header#mainHeader nav#mainNav ul#navList li#button {
+  display: none;
+  box-shadow: 1px 1px 4px #4d6edb;
+}
+@media screen and (max-width: 768px) {
+  header#mainHeader nav#mainNav ul#navList li#button {
+    display: block;
+  }
+}
+
+main#mainContent {
+  z-index: 1;
+}
+main#mainContent header {
+  width: 100%;
+  height: calc(100vh - 110px);
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+main#mainContent header div {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  bottom: 0;
+}
+main#mainContent header div h1 {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  color: whitesmoke;
+  font-size: 7rem;
+  z-index: 1;
+  font-weight: bolder;
+}
+main#mainContent header aside {
+  flex: 55%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+main#mainContent header aside img#cover {
+  filter: blur(2px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+main#mainContent header aside img.square {
+  width: 40%;
+  height: 40%;
+}
+main#mainContent header img#featured {
+  flex: 45%;
+  transform: scaleX(-1);
+  -o-object-position: 15% 100%;
+     object-position: 15% 100%;
+}
+main#mainContent section#triptych {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  padding: 6rem 3rem;
+}
+main#mainContent section#triptych .card {
+  height: 60vh;
+  position: relative;
+}
+main#mainContent section#triptych .card div.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  padding-left: 1rem;
+  font-size: 2rem;
+}
+
+footer#mainFooter {
+  background-color: black;
+  color: whitesmoke;
+}
+footer#mainFooter a {
+  color: inherit;
+  text-decoration: none;
+}
+footer#mainFooter section:not(.footer) {
+  padding: 3rem 1rem 1rem;
+}
+footer#mainFooter section.footer {
+  background: white;
+  color: black;
+  padding: 1rem;
+  text-align: center;
+}

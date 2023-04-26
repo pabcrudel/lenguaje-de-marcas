@@ -1,0 +1,238 @@
+$text-color: #FCF4F9;
+$text-shadow: #4d6edb;
+$bg-color: #462b32;
+
+//Responsive Design
+@mixin responsive($media: 768px){
+    @media screen and (max-width: $media) {
+        @content;
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-weight: normal;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    transition: ease-in-out 0.5s;
+    line-height: 1.6;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+        Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #E8F0FC;
+}
+
+img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+img.brandLogo {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+
+header#mainHeader {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    
+    nav#mainNav {
+        background-color: $bg-color;
+        border-bottom: 2px solid $text-color;
+        box-shadow: 0 3px 5px $text-shadow;
+
+        ul#navList {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            box-sizing: content-box;
+            list-style-type: none;
+            padding: 1rem 2rem 1rem 1rem;
+            margin: 0;
+            height: 75px;
+            color: $text-color;
+            text-shadow: 2px 2px 5px $text-shadow;
+            @include responsive() {
+                height: 100%;
+                // justify-content: center;
+            };
+
+
+            li {
+                margin: auto 0;
+                font-size: 1.25rem;
+
+                a {
+                    text-decoration: none;
+                    color: inherit;
+                }
+            }
+            
+            li#navBrand a {
+                display: flex;
+                flex-direction: row;
+                @include responsive() {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                };
+                gap: 1rem;
+                margin: 0;
+                font-size: 1.5rem;
+                height: 100%;
+
+                img.brandLogo {
+                    border: 2px solid $text-color;
+                    box-shadow: 1px 1px 4px $text-shadow;
+                }
+                
+                p {
+                    margin: auto 0;
+
+                    @include responsive() {
+                        padding-right: 1rem;
+                    };
+                }
+            }
+
+            li#navLinks ul {
+                @include responsive() {
+                    display: none;
+                };
+                list-style-type: none;
+                padding: 0;
+                
+                li {
+                    display: inline;
+
+                    &:not(:last-child) {
+                        margin-right: 1.25rem;
+                    }
+                }
+            }
+
+            li#button {
+                display: none;
+                box-shadow: 1px 1px 4px $text-shadow;
+                @include responsive() {
+                    display: block;
+                };
+            }
+        }
+    }
+}
+
+main#mainContent {
+    z-index: 1;
+
+    header {
+        width: 100%;
+        height: calc(100vh - 110px);
+        display: flex;
+        flex-direction: row;
+        position: relative;
+
+        div {
+            position: absolute;
+            top: 0;
+            left: 1rem;
+            bottom: 0;
+
+            h1 {
+                position: relative;
+                bottom: 0;
+                left: 0;
+                color: whitesmoke;
+                font-size: 7rem;
+                z-index: 1;
+                font-weight: bolder;
+            }
+        }
+        
+        aside {
+            flex: 55%;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+
+            img#cover {
+                filter: blur(2px);
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+            }
+
+            img.square {
+                $square: 40%;
+                width: $square;
+                height: $square;
+            }
+        }
+        img#featured {
+            flex: 45%;
+            transform: scaleX(-1);
+            object-position: 15% 100%;
+        }
+    }
+
+    section#triptych{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        padding: 6rem 3rem;
+
+        .card {
+            height: 60vh;
+            position: relative;
+
+            div.caption {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                color: white;
+                padding-left: 1rem;
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+footer#mainFooter {
+    background-color: black;
+    color: whitesmoke;
+    
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+    
+    section:not(.footer) {
+        padding: 3rem 1rem 1rem;
+    }
+
+    section.footer {
+        background: white;
+        color: black;
+        padding: 1rem;
+        text-align: center;
+    }
+}
