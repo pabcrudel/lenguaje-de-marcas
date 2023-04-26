@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      
+
       - name: Install dependencies
         run: |
           npm install -g html-minifier
@@ -24,9 +24,10 @@ jobs:
           npm install -g uglify-js
 
       - name: Build project
-        run: |
-          chmod +x minify.sh
-          minify.sh
+        # run: |
+        #   chmod +x minify.sh
+        #   minify.sh
+        run: ls
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
