@@ -22,13 +22,14 @@ jobs:
           npm install -g html-minifier
           npm install -g clean-css-cli
           npm install -g uglify-js
+          npm fund
           
       - name: Minify HTML, CSS, and JS files
         run: |
           while read -d $'\0' file; do
             rel_path=${file#./}
             min_path="dist/$rel_path"
-            mkdir -p "$(dirname "$min_path")"
+            # mkdir -p "$(dirname "$min_path")"
 
             case "$file" in
               *.html)
