@@ -23,32 +23,37 @@ jobs:
           npm install -g clean-css-cli
           npm install -g uglify-js
           npm fund
-          
-      - name: Minify HTML, CSS, and JS files
+
+      - name: Install & use Tree
         run: |
-          while read -d $'\0' file; do
-            rel_path=${file#./}
-            min_path="dist/$rel_path"
-            # mkdir -p "$(dirname "$min_path")"
+          sudo apt-get install tree
+          tree
 
-            case "$file" in
-              *.html)
-                html-minifier "$file" -o "$min_path" --collapse-whitespace --remove-comments
-              ;;
-              *.css)
-                cleancss "$file" -o "$min_path" --compatibility "ie >= 11, Edge >= 12, Firefox >= 2, Chrome >= 4, Safari >= 3.1, Opera >= 15, iOS >= 3.2"
-              ;;
-              *.js)
-                uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props
-              ;;
-              *)
-                cp "$file" "$min_path"
-              ;;
-            esac
-          done < <(find . -type f -not -path "*node_modules/*" -not -path "*.*" -print0)
+      # - name: Minify HTML, CSS, and JS files
+      #   run: |
+      #     while read -d $'\0' file; do
+      #       rel_path=${file#./}
+      #       min_path="dist/$rel_path"
+      #       # mkdir -p "$(dirname "$min_path")"
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          branch: gh-pages
-          folder: dist
+      #       case "$file" in
+      #         *.html)
+      #           html-minifier "$file" -o "$min_path" --collapse-whitespace --remove-comments
+      #         ;;
+      #         *.css)
+      #           cleancss "$file" -o "$min_path" --compatibility "ie >= 11, Edge >= 12, Firefox >= 2, Chrome >= 4, Safari >= 3.1, Opera >= 15, iOS >= 3.2"
+      #         ;;
+      #         *.js)
+      #           uglifyjs "$file" -o "$min_path" --compress drop_console --mangle --mangle-props
+      #         ;;
+      #         *)
+      #           cp "$file" "$min_path"
+      #         ;;
+      #       esac
+      #     done < <(find . -type f -not -path "*node_modules/*" -not -path "*.*" -print0)
+
+      # - name: Deploy to GitHub Pages
+      #   uses: JamesIves/github-pages-deploy-action@3.7.1
+      #   with:
+      #     branch: gh-pages
+      #     folder: dist
