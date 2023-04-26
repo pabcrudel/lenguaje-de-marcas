@@ -21,7 +21,7 @@ f_exclude_paths() {
     "*dist*"
     "*node_modules*"
     "./.*"
-    "*scripts*"
+    "*.sh"
   )
 
   exclude=()
