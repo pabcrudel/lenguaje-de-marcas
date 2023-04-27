@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # Script que minifica los archivos .html, .css y .js y los añade a la carpeta "dist".
+# Cualquier otro archivo lo movera sin modificarlo a dicha carpeta "dist".
 #
 # -----------------------------------------------------------------------------------
 # Author: Pablo Cru
