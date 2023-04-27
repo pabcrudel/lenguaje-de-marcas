@@ -51,7 +51,6 @@ f_build() {
   done < <(find . -mindepth 1 "${exclude[@]}" -print0)
 }
 
-f_create_dist
 f_exclude_paths
 
 if f_build; then
