@@ -10,12 +10,6 @@
 
 clear
 
-f_create_dist() {
-  if [ ! -d "dist" ]; then
-    mkdir dist
-  fi
-}
-
 f_exclude_paths() {
   excluded_paths=(
     "*dist*"
@@ -32,9 +26,13 @@ f_exclude_paths() {
 }
 
 f_build() {
+  folder="dist"
+
+  mkdir $folder
+
   while read -d $'\0' file; do
       rel_path=${file#./}
-      min_path="dist/$rel_path"
+      min_path="$folder/$rel_path"
 
       case "$file" in
           *.html)
@@ -60,6 +58,4 @@ if f_build; then
   echo
   echo Done!
   echo
-else
-  rm -rf dist
 fi
